@@ -58,42 +58,42 @@ VALUES
     ('s20', NULL, 'Blanca SuÃ¡rez| IvÃ¡n Marcos| Ã“scar Casas| AdriÃ¡n Lastra| Francesc Garrido| Stefan Weinert| Julia MÃ¶ller| Alicia Chojnowski')
     ;
 
-#This was to give me a basic understanding of what I am looking at.
+# This was to give me a basic understanding of what I am looking at.
 SELECT * FROM "netflix_titles_info" LIMIT 5;
 
-#I used this to get an understanding on which directors made which movies.
+# I used this to get an understanding on which directors made which movies.
 SELECT titles.show_id, titles.title, people.director
 FROM "netflix_people" people
 LEFT JOIN "netflix_titles_info" titles
 ON titles.show_id=people.show_id;
 
-#This was to quickly get a count of how many movie titles there are in the data.
+# This was to quickly get a count of how many movie titles there are in the data.
 SELECT COUNT(*)
 FROM "netflix_titles_info" titles
 WHERE type='Movie';
 
-#This was my first method to see the most recent batch of releases.
+# This was my first method to see the most recent batch of releases.
 SELECT "title", "date_added"
 FROM netflix_titles_info
 ORDER BY "date_added" desc;
 
-#This is a second method to quickly see when the most recent release was.
+# This is a second method to quickly see when the most recent release was.
 SELECT MAX(date(date_added))
 FROM "netflix_titles_info";
 
-#Use SELECT to list all the movies and tv shows in alphabetical order.
+# Use SELECT to list all the movies and tv shows in alphabetical order.
 SELECT "title"
 FROM "netflix_titles_info"
 ORDER BY "title" asc;
 
-#Use a JOIN in order to find the director of the movie "The Starling".
+# Use a JOIN in order to find the director of the movie "The Starling".
 SELECT people.director
 FROM "netflix_people" AS people
 LEFT JOIN "netflix_titles_info" AS titles
 ON people.show_id=titles.show_id
 WHERE titles.title='The Starling';
 
-#What is the oldest movie in the database and what year was it made?
+# What is the oldest movie in the database and what year was it made?
 SELECT title, release_year
 FROM "netflix_titles_info"
 WHERE type='Movie'
